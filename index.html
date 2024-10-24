@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanvir's Webpage</title>
+    <style>
+        /* Basic styles for the webpage */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .emoji-container {
+            margin-top: 20px;
+        }
+
+        .emoji {
+            font-size: 30px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: transform 0.2s;
+        }
+
+        .emoji:hover {
+            transform: scale(1.2);
+        }
+
+        .reaction-saved {
+            margin-top: 20px;
+            color: green;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hi, I am Tanvir</h1>
+        <img src="TR Sin.png" alt="" id="profile-picture">
+        
+        <div class="emoji-container">
+            <span class="emoji" onclick="saveReaction('😊')">😊</span>
+            <span class="emoji" onclick="saveReaction('👍')">👍</span>
+            <span class="emoji" onclick="saveReaction('❤️')">❤️</span>
+            <span class="emoji" onclick="saveReaction('🎉')">🎉</span>
+        </div>
+
+        <div id="reaction-message" class="reaction-saved"></div>
+    </div>
+
+    <script>
+        // Function to save the selected emoji in localStorage
+        function saveReaction(emoji) {
+            // Save the reaction in the browser's localStorage
+            localStorage.setItem('userReaction', emoji);
+
+            // Display a message confirming the reaction
+            document.getElementById('reaction-message').innerText = `You reacted with ${emoji}`;
+        }
+
+        // On page load, check if there's a saved reaction
+        window.onload = function() {
+            const savedReaction = localStorage.getItem('userReaction');
+            if (savedReaction) {
+                document.getElementById('reaction-message').innerText = `You already reacted with ${savedReaction}`;
+            }
+        }
+    </script>
+
+</body>
+</html>
